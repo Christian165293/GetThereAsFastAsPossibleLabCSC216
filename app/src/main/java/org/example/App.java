@@ -3,12 +3,35 @@
  */
 package org.example;
 
+import java.util.List;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Node<String> nodeA = new Node<>("A");
+        Node<String> nodeB = new Node<>("B");
+        Node<String> nodeC = new Node<>("C");
+        Node<String> nodeD = new Node<>("D");
+        Node<String> nodeE = new Node<>("E");
+        Node<String> nodeF = new Node<>("F");
+        Node<String> nodeZ = new Node<>("Z");
+
+        nodeA.addAdjacentNode(nodeB, 3);
+        nodeA.addAdjacentNode(nodeC, 4);
+        nodeA.addAdjacentNode(nodeD, 2);
+
+        nodeB.addAdjacentNode(nodeE, 5);
+
+        nodeC.addAdjacentNode(nodeF, 3);
+
+        nodeD.addAdjacentNode(nodeZ, 10);
+        nodeD.addAdjacentNode(nodeC, 1);
+        nodeE.addAdjacentNode(nodeZ, 8);
+
+        nodeF.addAdjacentNode(nodeZ,4);
+
+        Dijkstra<String> dijkstra = new Dijkstra<>();
+        dijkstra.calculateShortestPath(nodeA);
+        dijkstra.printPaths(List.of(nodeA, nodeB, nodeC, nodeD, nodeE, nodeF, nodeZ));
     }
 }
